@@ -6,10 +6,16 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 class AppTest {
-    IApp app = new App("data1.txt");
-//    IApp app = new App("data2.txt");
+    String filename = "data1.txt";
+//    String filename = "data2.txt";
+    Path path = Paths.get(Objects.requireNonNull(getClass().getClassLoader()
+                .getResource(filename)).toURI());
+    IApp app = new App(path);
 
     public AppTest() throws URISyntaxException, IOException {
     }

@@ -1,12 +1,10 @@
 package io.github.censodev.utc.dataminingtest;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static io.github.censodev.utc.dataminingtest.StatisticUtil.*;
@@ -18,9 +16,7 @@ public class App implements IApp {
     private final List<Double> sortedX;
     private final List<Double> sortedY;
 
-    public App(String resourceFile) throws URISyntaxException, IOException {
-        var path = Paths.get(Objects.requireNonNull(getClass().getClassLoader()
-                .getResource(resourceFile)).toURI());
+    public App(Path path) throws IOException {
         var lines = Files.lines(path);
         List<String> data = lines
                 .map(s -> s.replace(" ", ""))
