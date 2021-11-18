@@ -21,6 +21,6 @@ class AppTest {
 
     @Test
     void testDrawBoxplot() {
-        app.runDrawBoxplot();
+        app.runDrawBoxplotJob();
     }
 }

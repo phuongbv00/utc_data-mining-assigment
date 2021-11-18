@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static io.github.censodev.utc.dataminingtest.StatisticUtil.*;
+
 public class App implements IApp {
     private final int n;
     private final List<Double> X;
@@ -30,8 +32,8 @@ public class App implements IApp {
         Y = Arrays.stream(data.get(1).split(","))
                 .map(Double::parseDouble)
                 .collect(Collectors.toList());
-        sortedX = X.stream().sorted().collect(Collectors.toList());
-        sortedY = Y.stream().sorted().collect(Collectors.toList());
+        sortedX = sort(X);
+        sortedY = sort(Y);
         n = X.size();
     }
 
@@ -54,11 +56,20 @@ public class App implements IApp {
     }
 
     @Override
-    public void runDrawBoxplot() {
+    public void runDrawBoxplotJob() {
         System.out.println("Boxplot X:");
-        drawBoxplot(sortedX);
+        new Boxplot(X).draw();
         System.out.println();
         System.out.println("Boxplot Y:");
-        drawBoxplot(sortedY);
+        new Boxplot(Y).draw();
+    }
+
+    @Override
+    public void runNormalizeMinMaxJob() {
+
+    }
+
+    @Override
+    public void runNormalizeZScoreJob() {
     }
 }
