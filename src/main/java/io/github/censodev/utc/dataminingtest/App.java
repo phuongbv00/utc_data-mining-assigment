@@ -47,10 +47,30 @@ public class App implements IApp {
 
     @Override
     public void runNormalizeMinMaxJob() {
-
+        System.out.println(getMinMaxNormalizationFormula());
+        System.out.println();
+        System.out.println("Normalize min-max for X:");
+        System.out.println(X);
+        System.out.println(normalizeMinMax(X, 0, 1));
+        System.out.println();
+        System.out.println("Normalize min-max for Y:");
+        System.out.println(Y);
+        System.out.println(normalizeMinMax(Y, 0, 1));
     }
 
     @Override
     public void runNormalizeZScoreJob() {
+        System.out.println(getZScoreNormalizationFormula());
+        System.out.println(getSigmaFormula());
+        System.out.println();
+        System.out.println("Normalize z-score for X:");
+        System.out.println("σX = " + calcSigma(X));
+        System.out.println(X);
+        System.out.println(normalizeZScore(X));
+        System.out.println();
+        System.out.println("Normalize z-score for Y:");
+        System.out.println("σX = " + calcSigma(Y));
+        System.out.println(Y);
+        System.out.println(normalizeZScore(Y));
     }
 }

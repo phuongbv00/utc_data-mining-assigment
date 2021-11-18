@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StatisticUtil {
-    private StatisticUtil() {}
+    private StatisticUtil() {
+    }
 
     /**
+     * Return sorted dataset
+     *
      * @param dataset dataset
-     * @return Sorted dataset
+     * @return sorted dataset
      */
     public static List<Double> sort(List<Double> dataset) {
         return dataset.stream().sorted().collect(Collectors.toList());
@@ -66,6 +69,13 @@ public class StatisticUtil {
     }
 
     /**
+     * Return σ formula
+     */
+    public static String getSigmaFormula() {
+        return "σ = sqrt(sum_of_squares / n - mean_of_dataset ^ 2)";
+    }
+
+    /**
      * Return the σ of dataset
      *
      * @param dataset dataset
@@ -82,7 +92,14 @@ public class StatisticUtil {
     }
 
     /**
-     * Return the z-score normalized of dataset
+     * Return z-score normalization formula
+     */
+    public static String getZScoreNormalizationFormula() {
+        return "vi' = (vi - mean_of_dataset) / σ";
+    }
+
+    /**
+     * Return the z-score normalized dataset
      *
      * @param dataset dataset
      * @return z-score normalized of dataset
@@ -93,6 +110,32 @@ public class StatisticUtil {
         return dataset
                 .stream()
                 .map(vi -> (vi - mean) / sigma)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Return min-max normalization formula
+     */
+    public static String getMinMaxNormalizationFormula() {
+        return "vi' = (vi - min_of_dataset) / (max_of_dataset - min_of_dataset) * (max - min) + min";
+    }
+
+    /**
+     * Return min-max normalized dataset
+     *
+     * @param dataset dataset
+     * @param min min setting
+     * @param max max setting
+     * @return min-max normalized dataset
+     */
+    public static List<Double> normalizeMinMax(List<Double> dataset, double min, double max) {
+        var sortedDataset = sort(dataset);
+        var minOfDataset = sortedDataset.get(0);
+        var maxOfDataset = sortedDataset.get(dataset.size() - 1);
+        var min2max = maxOfDataset - minOfDataset;
+        return dataset
+                .stream()
+                .map(vi -> (vi - minOfDataset) / min2max * (max - min) + min)
                 .collect(Collectors.toList());
     }
 

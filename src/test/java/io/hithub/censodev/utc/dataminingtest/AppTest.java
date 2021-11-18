@@ -11,8 +11,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 class AppTest {
-    String filename = "data1.txt";
-//    String filename = "data2.txt";
+    String filename = "data.txt";
     Path path = Paths.get(Objects.requireNonNull(getClass().getClassLoader()
                 .getResource(filename)).toURI());
     IApp app = new App(path);
@@ -28,5 +27,15 @@ class AppTest {
     @Test
     void testDrawBoxplot() {
         app.runDrawBoxplotJob();
+    }
+
+    @Test
+    void testNormalizeMinMax() {
+        app.runNormalizeMinMaxJob();
+    }
+
+    @Test
+    void testNormalizeZScore() {
+        app.runNormalizeZScoreJob();
     }
 }
