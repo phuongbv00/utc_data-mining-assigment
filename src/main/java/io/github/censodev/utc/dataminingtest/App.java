@@ -16,9 +16,9 @@ public class App implements IApp {
     private final List<Double> sortedX;
     private final List<Double> sortedY;
 
-    public App() throws URISyntaxException, IOException {
+    public App(String resourceFile) throws URISyntaxException, IOException {
         var path = Paths.get(Objects.requireNonNull(getClass().getClassLoader()
-                .getResource("data.txt")).toURI());
+                .getResource(resourceFile)).toURI());
         var lines = Files.lines(path);
         List<String> data = lines
                 .map(s -> s.replace(" ", ""))
@@ -51,5 +51,14 @@ public class App implements IApp {
         }
         System.out.printf("Xmode = %.1f%n", mode(X));
         System.out.printf("Ymode = %.1f%n", mode(Y));
+    }
+
+    @Override
+    public void runDrawBoxplot() {
+        System.out.println("Boxplot X:");
+        drawBoxplot(sortedX);
+        System.out.println();
+        System.out.println("Boxplot Y:");
+        drawBoxplot(sortedY);
     }
 }
