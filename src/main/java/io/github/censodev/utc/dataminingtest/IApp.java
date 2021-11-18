@@ -38,9 +38,9 @@ public interface IApp {
         var n = sortedList.size();
         var listLeft = sortedList.subList(0, n / 2);
         var listRight = sortedList.subList(n % 2 == 0 ? n / 2 : n / 2 + 1, n);
-//        System.out.println(sortedList);
-//        System.out.println(listLeft);
-//        System.out.println(listRight);
+        System.out.println(sortedList);
+        System.out.println(listLeft);
+        System.out.println(listRight);
         var nL = listLeft.size();
         var nR = listRight.size();
         System.out.println("max = " + sortedList.get(n - 1));
