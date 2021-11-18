@@ -92,6 +92,36 @@ public class StatisticUtil {
                 .collect(Collectors.toList());
     }
 
+    @Getter
+    public static class M3 {
+        private final List<Double> dataset;
+        private final List<Double> sortedDataset;
+        private final double mean;
+        private final double medium;
+        private final double mode;
+
+        public M3(List<Double> dataset) {
+            this.dataset = dataset;
+            sortedDataset = sort(dataset);
+            mean = mean(dataset);
+            medium = medium(sortedDataset, true);
+            mode = mode(dataset);
+        }
+
+        public void print() {
+            var n = dataset.size();
+            System.out.printf("mean = (%.1f + ... + %.1f)/%d = %.2f%n", dataset.get(0), dataset.get(n - 1), n, mean);
+            System.out.println("Sorted dataset:");
+            System.out.println(sortedDataset);
+            if (n % 2 == 0) {
+                System.out.printf("medium = (%.1f + %.1f)/2 = %.2f%n", sortedDataset.get(n / 2 - 1), sortedDataset.get(n / 2), medium);
+            } else {
+                System.out.printf("medium = %.1f%n", medium);
+            }
+            System.out.printf("mode = %.1f%n", mode);
+        }
+    }
+
     /**
      * Create Boxplot from dataset
      */
