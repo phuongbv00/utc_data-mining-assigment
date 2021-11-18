@@ -92,6 +92,9 @@ public class StatisticUtil {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Mean, medium, mode calculator
+     */
     @Getter
     public static class M3 {
         private final List<Double> dataset;
