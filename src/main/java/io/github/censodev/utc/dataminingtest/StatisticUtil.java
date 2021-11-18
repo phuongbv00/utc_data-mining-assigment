@@ -73,8 +73,12 @@ public class StatisticUtil {
      */
     public static double calcSigma(List<Double> dataset) {
         var n = dataset.size();
-        var sumOfSquares = dataset.stream().mapToDouble(Double::doubleValue).map(num -> num * num).sum();
-        return Math.sqrt(sumOfSquares / n - Math.pow(StatisticUtil.mean(dataset), 2));
+        var sumOfSquares = dataset
+                .stream()
+                .mapToDouble(Double::doubleValue)
+                .map(num -> num * num)
+                .sum();
+        return Math.sqrt(sumOfSquares / n - Math.pow(mean(dataset), 2));
     }
 
     /**
@@ -85,7 +89,7 @@ public class StatisticUtil {
      */
     public static List<Double> normalizeZScore(List<Double> dataset) {
         var sigma = calcSigma(dataset);
-        var mean = StatisticUtil.mean(dataset);
+        var mean = mean(dataset);
         return dataset
                 .stream()
                 .map(vi -> (vi - mean) / sigma)
