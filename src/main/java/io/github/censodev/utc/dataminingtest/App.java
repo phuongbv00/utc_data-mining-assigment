@@ -73,4 +73,17 @@ public class App implements IApp {
         System.out.println(Y);
         System.out.println(normalizeZScore(Y));
     }
+
+    @Override
+    public void runNormalizeDecimalScalingJob() {
+        System.out.println(getDecimalScalingNormalizationFormula());
+        System.out.println();
+        System.out.println("Normalize decimal scaling for X:");
+        System.out.println(X);
+        System.out.println(normalizeDecimalScaling(X));
+        System.out.println();
+        System.out.println("Normalize decimal scaling for Y:");
+        System.out.println(Y);
+        System.out.println(normalizeDecimalScaling(Y));
+    }
 }

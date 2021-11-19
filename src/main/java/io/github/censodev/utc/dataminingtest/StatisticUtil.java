@@ -3,6 +3,7 @@ package io.github.censodev.utc.dataminingtest;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class StatisticUtil {
@@ -136,6 +137,35 @@ public class StatisticUtil {
         return dataset
                 .stream()
                 .map(vi -> (vi - minOfDataset) / min2max * (max - min) + min)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Return decimal scaling normalization formula
+     */
+    public static String getDecimalScalingNormalizationFormula() {
+        return "Find the smallest integer j such that max(abs(vi / 10 ^ j)) < 1 so data become vi / 10 ^ j";
+    }
+
+    /**
+     * Return decimal scaling normalized dataset
+     *
+     * @param dataset dataset
+     * @return decimal scaling normalized dataset
+     */
+    public static List<Double> normalizeDecimalScaling(List<Double> dataset) {
+        var n = dataset.size();
+        var sortedDataset = sort(dataset);
+        var absFirst = Math.abs(sortedDataset.get(0));
+        var absLast = Math.abs(sortedDataset.get(n - 1));
+        var absMax = Math.max(absFirst, absLast);
+        var j = new AtomicInteger(0);
+        while (absMax / Math.pow(10, j.get()) >= 1) {
+            j.incrementAndGet();
+        }
+        return dataset
+                .stream()
+                .map(vi -> vi / Math.pow(10, j.get()))
                 .collect(Collectors.toList());
     }
 

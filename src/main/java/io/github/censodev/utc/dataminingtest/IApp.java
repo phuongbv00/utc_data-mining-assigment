@@ -10,4 +10,6 @@ public interface IApp {
     void runNormalizeMinMaxJob();
 
     void runNormalizeZScoreJob();
+
+    void runNormalizeDecimalScalingJob();
 }

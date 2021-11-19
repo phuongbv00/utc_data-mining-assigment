@@ -38,4 +38,9 @@ class AppTest {
     void testNormalizeZScore() {
         app.runNormalizeZScoreJob();
     }
+
+    @Test
+    void testNormalizeDecimalScaling() {
+        app.runNormalizeDecimalScalingJob();
+    }
 }
