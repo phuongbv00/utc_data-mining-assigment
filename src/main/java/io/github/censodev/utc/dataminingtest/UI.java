@@ -22,7 +22,11 @@ public class UI {
                     app.runDrawBoxplotJob();
                     break;
                 case "3":
-                    app.runNormalizeMinMaxJob();
+                    System.out.print("Enter min: ");
+                    var min = Double.parseDouble(scanner.nextLine());
+                    System.out.print("Enter max: ");
+                    var max = Double.parseDouble(scanner.nextLine());
+                    app.runNormalizeMinMaxJob(min, max);
                     break;
                 case "4":
                     app.runNormalizeZScoreJob();

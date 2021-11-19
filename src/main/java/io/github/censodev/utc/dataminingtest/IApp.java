@@ -5,7 +5,7 @@ public interface IApp {
 
     void runDrawBoxplotJob();
 
-    void runNormalizeMinMaxJob();
+    void runNormalizeMinMaxJob(double min, double max);
 
     void runNormalizeZScoreJob();
 

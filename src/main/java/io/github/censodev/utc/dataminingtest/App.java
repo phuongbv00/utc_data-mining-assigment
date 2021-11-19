@@ -46,7 +46,7 @@ public class App implements IApp {
     }
 
     @Override
-    public void runNormalizeMinMaxJob() {
+    public void runNormalizeMinMaxJob(double min, double max) {
         System.out.println(getMinMaxNormalizationFormula());
         System.out.println();
         System.out.println("Normalize min-max for X:");

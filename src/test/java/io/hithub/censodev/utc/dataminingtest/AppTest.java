@@ -31,7 +31,7 @@ class AppTest {
 
     @Test
     void testNormalizeMinMax() {
-        app.runNormalizeMinMaxJob();
+        app.runNormalizeMinMaxJob(0, 1);
     }
 
     @Test
