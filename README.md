@@ -10,7 +10,7 @@ A tool supports data mining assignments in [UTC](https://utc.edu.vn)
 5. Normalize z-score by mean absolute deviant
 6. Normalize decimal scaling
 7. Correlation coefficient
-8. ...
+8. Partition by equal-width partitioning
 
 I will try to update the rest as soon as possible '-')>
 

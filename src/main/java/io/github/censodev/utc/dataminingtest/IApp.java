@@ -13,5 +13,7 @@ public interface IApp {
 
     void runNormalizeDecimalScalingJob();
 
-    void runCalcCorrelationCoefficient();
+    void runCalcCorrelationCoefficientJob();
+
+    void runPartitionByEqualWidthJob(int bins);
 }

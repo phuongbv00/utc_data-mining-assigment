@@ -2,7 +2,9 @@ package io.github.censodev.utc.dataminingtest;
 
 import lombok.Getter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -321,6 +323,44 @@ public class StatisticUtil {
                 System.out.printf("Q3 = %.1f%n", Q3);
             }
             System.out.printf("IQR = Q3 - Q1 = %.2f - %.2f = %.2f%n", Q3, Q1, IQR);
+        }
+    }
+
+    @Getter
+    public static class EqualWidthPartition {
+        private final Map<Integer, List<Double>> bins = new HashMap<>();
+        private final List<Double> sortedDataset;
+        private final double width;
+        private final Map<Integer, String> binsCapacities = new HashMap<>();
+        private final Map<Integer, Double> binsMeans = new HashMap<>();
+        private final int binNum;
+
+        public EqualWidthPartition(int binNum, List<Double> dataset) {
+            this.binNum = binNum;
+            sortedDataset = sort(dataset);
+            var n = dataset.size();
+            var max = sortedDataset.get(n - 1);
+            var min = sortedDataset.get(0);
+            width = (max - min) / binNum;
+            IntStream.range(1, binNum + 1)
+                    .forEach(binIndex -> {
+                        binsCapacities.put(binIndex, String.format(binIndex == binNum ? "[%.2f, %.2f]" : "[%.2f, %.2f)", min + (binIndex - 1) * width, min + binIndex * width));
+                        bins.put(binIndex, sortedDataset
+                                .stream()
+                                .filter(vi -> binIndex == binNum ? vi <= min + binIndex * width : vi < min + binIndex * width)
+                                .filter(vi -> vi >= min + (binIndex - 1) * width)
+                                .collect(Collectors.toList()));
+                        binsMeans.put(binIndex, mean(bins.get(binIndex)));
+                    });
+        }
+
+        public void print() {
+            System.out.println("sorted dataset: " + sortedDataset);
+            System.out.printf("width = (max - min) / %d = %.2f%n", binNum, width);
+            System.out.println("bins:");
+            binsCapacities.forEach((binIndex, cap) -> System.out.printf("%s: %s%n", cap, bins.get(binIndex)));
+            System.out.println("bins means:");
+            System.out.println(binsMeans);
         }
     }
 }

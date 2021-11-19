@@ -104,7 +104,7 @@ public class App implements IApp {
     }
 
     @Override
-    public void runCalcCorrelationCoefficient() {
+    public void runCalcCorrelationCoefficientJob() {
         System.out.println("Correlation coefficient of X and Y:");
         System.out.println(getCorrelationCoefficientFormula());
         System.out.println();
@@ -113,5 +113,14 @@ public class App implements IApp {
         System.out.println("σX = " + calcSigma(X));
         System.out.println("σy = " + calcSigma(Y));
         System.out.println("rxy = " + calcCorrelationCoefficient(X, Y));
+    }
+
+    @Override
+    public void runPartitionByEqualWidthJob(int bins) {
+        System.out.println("Partition X by equal-width:");
+        new EqualWidthPartition(bins, X).print();
+        System.out.println();
+        System.out.println("Partition Y by equal-width:");
+        new EqualWidthPartition(bins, Y).print();
     }
 }

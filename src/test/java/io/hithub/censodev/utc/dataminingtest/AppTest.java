@@ -51,6 +51,11 @@ class AppTest {
 
     @Test
     void testCalcCorrelationCoefficient() {
-        app.runCalcCorrelationCoefficient();
+        app.runCalcCorrelationCoefficientJob();
+    }
+
+    @Test
+    void testPartitionByEqualWidth() {
+        app.runPartitionByEqualWidthJob(3);
     }
 }
