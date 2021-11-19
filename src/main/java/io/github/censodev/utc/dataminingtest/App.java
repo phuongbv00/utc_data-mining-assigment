@@ -102,4 +102,16 @@ public class App implements IApp {
         System.out.println(Y);
         System.out.println(normalizeDecimalScaling(Y));
     }
+
+    @Override
+    public void runCalcCorrelationCoefficient() {
+        System.out.println("Correlation coefficient of X and Y:");
+        System.out.println(getCorrelationCoefficientFormula());
+        System.out.println();
+        System.out.println("meanX = " + mean(X));
+        System.out.println("meanY = " + mean(Y));
+        System.out.println("σX = " + calcSigma(X));
+        System.out.println("σy = " + calcSigma(Y));
+        System.out.println("rxy = " + calcCorrelationCoefficient(X, Y));
+    }
 }

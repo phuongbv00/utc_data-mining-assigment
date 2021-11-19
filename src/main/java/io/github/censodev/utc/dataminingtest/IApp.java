@@ -12,4 +12,6 @@ public interface IApp {
     void runNormalizeZScoreMeanAbsDeviationJob();
 
     void runNormalizeDecimalScalingJob();
+
+    void runCalcCorrelationCoefficient();
 }

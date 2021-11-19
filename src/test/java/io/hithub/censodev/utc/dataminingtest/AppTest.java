@@ -48,4 +48,9 @@ class AppTest {
     void testNormalizeDecimalScaling() {
         app.runNormalizeDecimalScalingJob();
     }
+
+    @Test
+    void testCalcCorrelationCoefficient() {
+        app.runCalcCorrelationCoefficient();
+    }
 }

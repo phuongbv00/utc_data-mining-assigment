@@ -5,6 +5,7 @@ import lombok.Getter;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StatisticUtil {
     private StatisticUtil() {
@@ -211,6 +212,32 @@ public class StatisticUtil {
                 .stream()
                 .map(vi -> vi / Math.pow(10, j.get()))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Return correlation coefficient formula
+     */
+    public static String getCorrelationCoefficientFormula() {
+        return "rxy = (sum(xi * yi) - n * meanX * meanY) / (n * σX * σY)";
+    }
+
+    /**
+     * Return correlation coefficient of 2 dataset
+     *
+     * @param dataset1 dataset 1
+     * @param dataset2 dataset 2
+     * @return correlation coefficient of 2 dataset
+     */
+    public static double calcCorrelationCoefficient(List<Double> dataset1, List<Double> dataset2) {
+        var n = dataset1.size();
+        var mean1 = mean(dataset1);
+        var mean2 = mean(dataset2);
+        var sigma1 = calcSigma(dataset1);
+        var sigma2 = calcSigma(dataset2);
+        var sumOfMultiplies = IntStream.range(0, n)
+                .mapToDouble(i -> dataset1.get(i) * dataset2.get(i))
+                .sum();
+        return (sumOfMultiplies - n * mean1 * mean2) / (n * sigma1 * sigma2);
     }
 
     /**
