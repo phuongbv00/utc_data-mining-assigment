@@ -69,7 +69,7 @@ public class App implements IApp {
         System.out.println(normalizeZScore(X));
         System.out.println();
         System.out.println("Normalize z-score for Y:");
-        System.out.println("σX = " + calcSigma(Y));
+        System.out.println("σY = " + calcSigma(Y));
         System.out.println(Y);
         System.out.println(normalizeZScore(Y));
     }
