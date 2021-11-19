@@ -115,6 +115,50 @@ public class StatisticUtil {
     }
 
     /**
+     * Return z-score normalization formula
+     */
+    public static String getZScoreMeanAbsDeviationNormalizationFormula() {
+        return "vi' = (vi - mean_of_dataset) / s";
+    }
+
+    /**
+     * Return the z-score mean absolute deviation normalized dataset
+     *
+     * @param dataset dataset
+     * @return z-score mean absolute deviation normalized dataset
+     */
+    public static List<Double> normalizeZScoreMeanAbsDeviation(List<Double> dataset) {
+        var mean = mean(dataset);
+        var s = calcMeanAbsDeviation(dataset);
+        return dataset
+                .stream()
+                .map(vi -> (vi - mean) / s)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Return the mean absolute deviation formula
+     */
+    public static String getMeanAbsDeviationFormula() {
+        return "s = sum(abs(vi - mean_of_dataset)) / n";
+    }
+
+    /**
+     * Return the mean absolute deviation of dataset
+     *
+     * @param dataset dataset
+     * @return mean absolute deviation
+     */
+    public static double calcMeanAbsDeviation(List<Double> dataset) {
+        var mean = mean(dataset);
+        return dataset
+                .stream()
+                .mapToDouble(Double::doubleValue)
+                .map(vi -> Math.abs(vi - mean))
+                .sum() / dataset.size();
+    }
+
+    /**
      * Return min-max normalization formula
      */
     public static String getMinMaxNormalizationFormula() {
@@ -125,8 +169,8 @@ public class StatisticUtil {
      * Return min-max normalized dataset
      *
      * @param dataset dataset
-     * @param min min setting
-     * @param max max setting
+     * @param min     min setting
+     * @param max     max setting
      * @return min-max normalized dataset
      */
     public static List<Double> normalizeMinMax(List<Double> dataset, double min, double max) {
@@ -144,7 +188,7 @@ public class StatisticUtil {
      * Return decimal scaling normalization formula
      */
     public static String getDecimalScalingNormalizationFormula() {
-        return "Find the smallest integer j such that max(abs(vi / 10 ^ j)) < 1 so data become vi / 10 ^ j";
+        return "Find the smallest integer j such that max(abs(vi / 10 ^ j)) <= 1 so data become vi / 10 ^ j";
     }
 
     /**
@@ -160,7 +204,7 @@ public class StatisticUtil {
         var absLast = Math.abs(sortedDataset.get(n - 1));
         var absMax = Math.max(absFirst, absLast);
         var j = new AtomicInteger(0);
-        while (absMax / Math.pow(10, j.get()) >= 1) {
+        while (absMax / Math.pow(10, j.get()) > 1) {
             j.incrementAndGet();
         }
         return dataset

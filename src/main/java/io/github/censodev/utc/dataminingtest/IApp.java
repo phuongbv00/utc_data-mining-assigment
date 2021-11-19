@@ -1,7 +1,5 @@
 package io.github.censodev.utc.dataminingtest;
 
-import java.util.List;
-
 public interface IApp {
     void runCalcMeanMediumModeJob();
 
@@ -10,6 +8,8 @@ public interface IApp {
     void runNormalizeMinMaxJob();
 
     void runNormalizeZScoreJob();
+
+    void runNormalizeZScoreMeanAbsDeviationJob();
 
     void runNormalizeDecimalScalingJob();
 }

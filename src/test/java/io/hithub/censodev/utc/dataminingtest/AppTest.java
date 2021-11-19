@@ -40,6 +40,11 @@ class AppTest {
     }
 
     @Test
+    void testNormalizeZScoreMeanAbsDeviation() {
+        app.runNormalizeZScoreMeanAbsDeviationJob();
+    }
+
+    @Test
     void testNormalizeDecimalScaling() {
         app.runNormalizeDecimalScalingJob();
     }

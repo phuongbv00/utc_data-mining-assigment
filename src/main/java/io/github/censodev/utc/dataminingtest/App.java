@@ -75,6 +75,22 @@ public class App implements IApp {
     }
 
     @Override
+    public void runNormalizeZScoreMeanAbsDeviationJob() {
+        System.out.println(getZScoreMeanAbsDeviationNormalizationFormula());
+        System.out.println(getMeanAbsDeviationFormula());
+        System.out.println();
+        System.out.println("Normalize z-score mean abs deviation for X:");
+        System.out.println("sX = " + calcMeanAbsDeviation(X));
+        System.out.println(X);
+        System.out.println(normalizeZScoreMeanAbsDeviation(X));
+        System.out.println();
+        System.out.println("Normalize z-score mean abs deviation for Y:");
+        System.out.println("sY = " + calcMeanAbsDeviation(Y));
+        System.out.println(Y);
+        System.out.println(normalizeZScoreMeanAbsDeviation(Y));
+    }
+
+    @Override
     public void runNormalizeDecimalScalingJob() {
         System.out.println(getDecimalScalingNormalizationFormula());
         System.out.println();
