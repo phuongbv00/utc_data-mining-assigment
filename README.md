@@ -2,6 +2,18 @@
 ## Introduction
 A tool supports data mining assignments in [UTC](https://utc.edu.vn)
 
+## Features
+1. Mean, medium, mode
+2. Boxplot
+3. Normalize min-max
+4. Normalize z-score
+5. Normalize z-score by mean absolute deviant
+6. Normalize decimal scaling
+7. Correlation coefficient
+8. ...
+
+I will try to update the rest as soon as possible '-')>
+
 ## Prerequisites
 * Java 11
 
