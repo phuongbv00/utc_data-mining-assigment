@@ -55,7 +55,12 @@ class AppTest {
     }
 
     @Test
-    void testPartitionByEqualWidth() {
+    void testSmoothDataByEqualWidthBinning() {
         app.runSmoothDataByEqualWidthBinningJob(3);
+    }
+
+    @Test
+    void testSmoothDataByEqualFrequencyBinning() {
+        app.runSmoothDataByEqualFrequencyBinningJob(3);
     }
 }

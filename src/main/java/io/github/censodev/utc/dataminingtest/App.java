@@ -117,10 +117,19 @@ public class App implements IApp {
 
     @Override
     public void runSmoothDataByEqualWidthBinningJob(int bins) {
-        System.out.println("Partition X by equal-width:");
+        System.out.println("Smooth X by equal-width binning:");
         new EqualWidthBinningSmoothHelper(bins, X).print();
         System.out.println();
-        System.out.println("Partition Y by equal-width:");
+        System.out.println("Smooth Y by equal-width binning:");
         new EqualWidthBinningSmoothHelper(bins, Y).print();
+    }
+
+    @Override
+    public void runSmoothDataByEqualFrequencyBinningJob(int bins) {
+        System.out.println("Smooth X by equal-frequency binning:");
+        new EqualFrequencyBinningSmoothHelper(bins, X).print();
+        System.out.println();
+        System.out.println("Smooth Y by equal-frequency binning:");
+        new EqualFrequencyBinningSmoothHelper(bins, Y).print();
     }
 }

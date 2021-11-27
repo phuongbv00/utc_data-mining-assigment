@@ -16,4 +16,6 @@ public interface IApp {
     void runCalcCorrelationCoefficientJob();
 
     void runSmoothDataByEqualWidthBinningJob(int bins);
+
+    void runSmoothDataByEqualFrequencyBinningJob(int bins);
 }

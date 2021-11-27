@@ -376,4 +376,40 @@ public class StatisticUtil {
             System.out.println(binsBoundaries);
         }
     }
+
+    public static class EqualFrequencyBinningSmoothHelper {
+        private final Map<Integer, List<Double>> bins = new HashMap<>();
+        private final List<Double> sortedDataset;
+        private final Map<Integer, List<Double>> binsMeans = new HashMap<>();
+        private final Map<Integer, List<Double>> binsMediums = new HashMap<>();
+        private final Map<Integer, List<Double>> binsBoundaries = new HashMap<>();
+
+        public EqualFrequencyBinningSmoothHelper(int binNum, List<Double> dataset) {
+            sortedDataset = sort(dataset);
+            var quantityPerBin = dataset.size() / binNum;
+            IntStream.range(1, binNum + 1).forEach(binIndex -> {
+                var items = sortedDataset.subList((binIndex - 1) * quantityPerBin, binIndex * quantityPerBin);
+                bins.put(binIndex, items);
+                var binMean = mean(items);
+                var binMed = medium(items, true);
+                binsMeans.put(binIndex, items.stream().map(__ -> binMean).collect(Collectors.toList()));
+                binsMediums.put(binIndex, items.stream().map(__ -> binMed).collect(Collectors.toList()));
+                var maxOfBin = items.get(items.size() - 1);
+                var minOfBin = items.get(0);
+                binsBoundaries.put(binIndex, items.stream().map(i -> i - minOfBin <= maxOfBin - i ? minOfBin : maxOfBin).collect(Collectors.toList()));
+            });
+        }
+
+        public void print() {
+            System.out.println("sorted dataset: " + sortedDataset);
+            System.out.println("bins:");
+            System.out.println(bins);
+            System.out.println("bins means:");
+            System.out.println(binsMeans);
+            System.out.println("bins mediums:");
+            System.out.println(binsMediums);
+            System.out.println("bins boundaries:");
+            System.out.println(binsBoundaries);
+        }
+    }
 }

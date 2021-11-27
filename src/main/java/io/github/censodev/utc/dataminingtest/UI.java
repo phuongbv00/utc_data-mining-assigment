@@ -44,6 +44,10 @@ public class UI {
                     System.out.print("Enter number of bins: ");
                     app.runSmoothDataByEqualWidthBinningJob(Integer.parseInt(scanner.nextLine()));
                     break;
+                case "9":
+                    System.out.print("Enter number of bins: ");
+                    app.runSmoothDataByEqualFrequencyBinningJob(Integer.parseInt(scanner.nextLine()));
+                    break;
                 default:
                     scanner.close();
                     return;
@@ -61,6 +65,7 @@ public class UI {
         System.out.println("6. Normalize decimal scaling");
         System.out.println("7. Correlation coefficient");
         System.out.println("8. Smooth data by equal-width binning");
+        System.out.println("9. Smooth data by equal-frequency binning");
         System.out.println("=============================================");
         System.out.print("> Choose an option: ");
     }
