@@ -332,7 +332,9 @@ public class StatisticUtil {
         private final List<Double> sortedDataset;
         private final double width;
         private final Map<Integer, String> binsCapacities = new HashMap<>();
-        private final Map<Integer, Double> binsMeans = new HashMap<>();
+        private final Map<Integer, List<Double>> binsMeans = new HashMap<>();
+        private final Map<Integer, List<Double>> binsMediums = new HashMap<>();
+        private final Map<Integer, List<Double>> binsBoundaries = new HashMap<>();
         private final int binNum;
 
         public EqualWidthPartition(int binNum, List<Double> dataset) {
@@ -345,12 +347,19 @@ public class StatisticUtil {
             IntStream.range(1, binNum + 1)
                     .forEach(binIndex -> {
                         binsCapacities.put(binIndex, String.format(binIndex == binNum ? "[%.2f, %.2f]" : "[%.2f, %.2f)", min + (binIndex - 1) * width, min + binIndex * width));
-                        bins.put(binIndex, sortedDataset
+                        var items = sortedDataset
                                 .stream()
                                 .filter(vi -> binIndex == binNum ? vi <= min + binIndex * width : vi < min + binIndex * width)
                                 .filter(vi -> vi >= min + (binIndex - 1) * width)
-                                .collect(Collectors.toList()));
-                        binsMeans.put(binIndex, mean(bins.get(binIndex)));
+                                .collect(Collectors.toList());
+                        bins.put(binIndex, items);
+                        var binMean = mean(items);
+                        var binMed = medium(items, true);
+                        binsMeans.put(binIndex, items.stream().map(__ -> binMean).collect(Collectors.toList()));
+                        binsMediums.put(binIndex, items.stream().map(__ -> binMed).collect(Collectors.toList()));
+                        var maxOfBin = items.get(items.size() - 1);
+                        var minOfBin = items.get(0);
+                        binsBoundaries.put(binIndex, items.stream().map(i -> i - minOfBin <= maxOfBin - i ? minOfBin : maxOfBin).collect(Collectors.toList()));
                     });
         }
 
@@ -361,6 +370,10 @@ public class StatisticUtil {
             binsCapacities.forEach((binIndex, cap) -> System.out.printf("%s: %s%n", cap, bins.get(binIndex)));
             System.out.println("bins means:");
             System.out.println(binsMeans);
+            System.out.println("bins mediums:");
+            System.out.println(binsMediums);
+            System.out.println("bins boundaries:");
+            System.out.println(binsBoundaries);
         }
     }
 }
