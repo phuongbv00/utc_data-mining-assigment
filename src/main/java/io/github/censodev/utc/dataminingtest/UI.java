@@ -42,7 +42,7 @@ public class UI {
                     break;
                 case "8":
                     System.out.print("Enter number of bins: ");
-                    app.runPartitionByEqualWidthJob(Integer.parseInt(scanner.nextLine()));
+                    app.runSmoothDataByEqualWidthBinningJob(Integer.parseInt(scanner.nextLine()));
                     break;
                 default:
                     scanner.close();
@@ -60,7 +60,7 @@ public class UI {
         System.out.println("5. Normalize z-score by mean absolute deviant");
         System.out.println("6. Normalize decimal scaling");
         System.out.println("7. Correlation coefficient");
-        System.out.println("8. Partition by equal-width partitioning");
+        System.out.println("8. Smooth data by equal-width binning");
         System.out.println("=============================================");
         System.out.print("> Choose an option: ");
     }

@@ -327,7 +327,7 @@ public class StatisticUtil {
     }
 
     @Getter
-    public static class EqualWidthPartition {
+    public static class EqualWidthBinningSmoothHelper {
         private final Map<Integer, List<Double>> bins = new HashMap<>();
         private final List<Double> sortedDataset;
         private final double width;
@@ -337,7 +337,7 @@ public class StatisticUtil {
         private final Map<Integer, List<Double>> binsBoundaries = new HashMap<>();
         private final int binNum;
 
-        public EqualWidthPartition(int binNum, List<Double> dataset) {
+        public EqualWidthBinningSmoothHelper(int binNum, List<Double> dataset) {
             this.binNum = binNum;
             sortedDataset = sort(dataset);
             var n = dataset.size();

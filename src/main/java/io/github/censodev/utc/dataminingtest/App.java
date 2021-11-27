@@ -116,11 +116,11 @@ public class App implements IApp {
     }
 
     @Override
-    public void runPartitionByEqualWidthJob(int bins) {
+    public void runSmoothDataByEqualWidthBinningJob(int bins) {
         System.out.println("Partition X by equal-width:");
-        new EqualWidthPartition(bins, X).print();
+        new EqualWidthBinningSmoothHelper(bins, X).print();
         System.out.println();
         System.out.println("Partition Y by equal-width:");
-        new EqualWidthPartition(bins, Y).print();
+        new EqualWidthBinningSmoothHelper(bins, Y).print();
     }
 }

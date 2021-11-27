@@ -56,6 +56,6 @@ class AppTest {
 
     @Test
     void testPartitionByEqualWidth() {
-        app.runPartitionByEqualWidthJob(3);
+        app.runSmoothDataByEqualWidthBinningJob(3);
     }
 }
