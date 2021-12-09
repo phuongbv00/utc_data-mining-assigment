@@ -1,4 +1,4 @@
-# UTC Data Mining Test
+# UTC Data Mining Assignment
 ## Introduction
 A tool supports data mining assignments in [UTC](https://utc.edu.vn)
 
